@@ -14,7 +14,7 @@ namespace Game
         { 
             _data = data;
             _PlayerName.text = _data.GamerTag;
-            gameObject.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 }

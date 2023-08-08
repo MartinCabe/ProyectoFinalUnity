@@ -27,36 +27,36 @@ namespace Game
         {
             LobbyEvents.OnLobbyUpdated -= OnLobbyUpdated;
         }
-        // Método para obtener el código del lobby desde el LobbyManager
+        // Mï¿½todo para obtener el cï¿½digo del lobby desde el LobbyManager
         public string GetLobbyCode()
         {
             return LobbyManager.Instance.GetLobbyCode();
         }
 
-        // Método para crear un lobby de juego de forma asíncrona
+        // Mï¿½todo para crear un lobby de juego de forma asï¿½ncrona
         public async Task<bool> CreateLobby()
         {
-            // Se crea un objeto LobbyPlayerData que representa los datos del jugador anfitrión.
+            // Se crea un objeto LobbyPlayerData que representa los datos del jugador anfitriï¿½n.
             LobbyPlayerData playerData = new LobbyPlayerData();
             playerData.Initialize(AuthenticationService.Instance.PlayerId, "HostPlayer");
 
-            // Se llama al método CreateLobby del LobbyManager para crear el lobby con los siguientes parámetros:
-            // - Tiempo límite del lobby: 30 segundos
-            // - Se permite iniciar el juego automáticamente cuando todos los jugadores están listos (true)
-            // - Los datos del jugador anfitrión se serializan y se envían al lobby para que los demás jugadores puedan acceder a ellos.
+            // Se llama al mï¿½todo CreateLobby del LobbyManager para crear el lobby con los siguientes parï¿½metros:
+            // - Tiempo lï¿½mite del lobby: 30 segundos
+            // - Se permite iniciar el juego automï¿½ticamente cuando todos los jugadores estï¿½n listos (true)
+            // - Los datos del jugador anfitriï¿½n se serializan y se envï¿½an al lobby para que los demï¿½s jugadores puedan acceder a ellos.
             bool succeeded = await LobbyManager.Instance.CreateLobby(30, true, playerData.Serialize());
 
-            // Se devuelve el resultado de la creación del lobby.
+            // Se devuelve el resultado de la creaciï¿½n del lobby.
             return succeeded;
         }
 
-        // Método para unirse a un lobby existente de forma asíncrona
+        // Mï¿½todo para unirse a un lobby existente de forma asï¿½ncrona
         public async Task<bool> JoinLobby(string code)
         {
 
             LobbyPlayerData playerData = new LobbyPlayerData();
             playerData.Initialize(AuthenticationService.Instance.PlayerId, "JoinPlayer");
-            // Se llama al método JoinLobby del LobbyManager para unirse al lobby con el código proporcionado y los datos del jugador.
+            // Se llama al mï¿½todo JoinLobby del LobbyManager para unirse al lobby con el cï¿½digo proporcionado y los datos del jugador.
             bool succeeded = await LobbyManager.Instance.JoinLobby(code, playerData.Serialize());
 
             // Se devuelve el resultado de unirse al lobby.
